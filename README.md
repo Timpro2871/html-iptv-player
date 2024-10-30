@@ -12,7 +12,7 @@ https://dbghelp.github.io/player.html?file=https://dbghelp.github.io/playlist.m3
 
 - Mouse over channel logo to view EPG for specific channel (with thumbnail images from epg.xml)
 - Click on EPG button to view EPG for all channels (Traditional EPG)
-- Supports different key format (hex, base64, multiple keys)
+- Supports different key formats (hex, base64, multiple keys)
 - Supports DASH, HLS, MSS (using shaka player)
 
 
@@ -44,6 +44,13 @@ https://media.axprod.net/TestVectors/Cmaf/protected_1080p_h264_cbcs/manifest.mpd
 #KODIPROP:inputstream.adaptive.license_key={ "keys":[ { "kty":"oct", "k":"FbKq+Qbr7GMJ1A+RKJEnuA==", "kid":"MC+A3UEeSIa8pbsfgBigJA==" } , { "kty":"oct", "k":"FbKq+Qbr7GMJ1A+RKJEnuA==", "kid":"MC+A3UEeSIa8pbsfgBigJA==" } ], "type":"temporary" }
 https://media.axprod.net/TestVectors/Cmaf/protected_1080p_h264_cbcs/manifest.mpd
 ```
+## Test out your epg.xml
+
+https://github.com/dbghelp/html-epg-viewer
+
+https://dbghelp.github.io/epg.html?file=<link to epg.xml\>
+
+[https://dbghelp.github.io/epg.html?file=https://raw.githubusercontent.com/dbghelp/mewatch-EPG/refs/heads/main/mewatch.xml](https://dbghelp.github.io/epg.html?file=https://raw.githubusercontent.com/dbghelp/mewatch-EPG/refs/heads/main/mewatch.xml)
 
 ## Usage
 
