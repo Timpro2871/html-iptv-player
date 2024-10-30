@@ -52,6 +52,21 @@ https://dbghelp.github.io/epg.html?file=<link to epg.xml\>
 
 [https://dbghelp.github.io/epg.html?file=https://raw.githubusercontent.com/dbghelp/mewatch-EPG/refs/heads/main/mewatch.xml](https://dbghelp.github.io/epg.html?file=https://raw.githubusercontent.com/dbghelp/mewatch-EPG/refs/heads/main/mewatch.xml)
 
+## Create your own IPTV web app in 5 minutes
+
+1. Download create_your_own_iptv_webapp.html from this repository
+2. Open the file in notepad, search for `m3u8Link='https://dbghelp.github.io/playlist.m3u8'` and replace the hardcoded playlist.m3u8 link to your m3u8 playlist link
+3. Rename the file to what you like
+4. Find a static html hosting service and upload the html file (or use python -m http.server to host locally)
+
+## CORS issue
+
+Here's a few ways to solve it:
+- Try to use incognito mode (may work)
+- Find a web browser extension for this
+- Use a CORS proxy
+- Use other alternative links
+
 ## Usage
 
 To be updated
