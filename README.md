@@ -76,6 +76,124 @@ Here's a few ways to solve it:
 - Use a CORS proxy
 - Use other alternative links
 
-## Usage
+## Timeshift to watch previously aired TV programmes
 
-To be updated
+![Local Image](./img/timeshift1.png)
+![Local Image](./img/timeshift2.png)
+![Local Image](./img/timeshift3.png)
+
+
+Often, platforms providing livestream feeds for IPTV providers include a timeshift feature by adding additional HTTP parameters. However, this feature is typically not made available to subscribers of the IPTV service. We can access this feature by injecting the correct HTTP parameters ourselves.
+
+Here are the platforms I have discovered, along with their HTTP parameter formats:
+
+1. **Verimatrix**  
+   Tested with the following IPTV providers, and confirmed that it works: Singtel, Telefónica, Telus
+
+   **MPD URL pattern and example HTTP parameters:**
+    <pre>https://example.com/1234/<span style="color: red;">vxfmt=dp</span>/manifest.mpd?xxxx=xxxx&start_time=2024-12-30T15:00:00Z&end_time=2024-12-30T16:00:00Z</pre>
+
+2. **Broadpeak**  
+   Tested with the following IPTV providers, and confirmed that it works: Starhub, Magenta TV
+
+   **MPD URL pattern and example HTTP parameters:**
+    <pre>https://example.com/bpk-tv/xxxx/output/manifest.mpd?begin=20241230T153000Z&end=20241230T170000Z</pre>
+
+3. **AWS Media Services**  
+   Tested with the following IPTV providers, and confirmed that it works: mewatch
+
+   **MPD URL pattern and example HTTP parameters:**
+    <pre>https://example.com/out/v1/8928c1140dd354c5be06db78d686eada/manifest.mpd?start=1735574400&end=1735578000</pre>
+
+If the mpd url of your channel is not 1, 2 or 3, then this format is applied:
+
+`?start=1735574400&end=1735578000`
+
+
+
+
+
+## Download previously aired TV programmes
+
+Ensure that you can timeshift to watch the previously aired TV programme first.
+
+Click on the download button to get the download command:
+![Local Image](./img/download1.png)
+
+Example download command generated:
+
+`
+N_m3u8DL-RE --check-segments-count false "https://example.com/manifest.mpd?xxxxxx=xxxxxx&start_time=2024-12-30T14:00:00Z&end_time=2024-12-30T14:30:00Z" -M format=mkv --save-name "InSpectre Season 2  EP 1" --key 00000000000000000000000000000000:00000000000000000000000000000000
+`
+
+## Download future TV programmes
+
+Click on the cronjob(linux) or schtasks(windows) button to get the cronjob/schtasks command:
+![Local Image](./img/cronjob1.png)
+![Local Image](./img/schtasks1.png)
+
+Example cronjob (for linux) command generated:
+
+`
+echo 'N_m3u8DL-RE --check-segments-count false "https://example.com/manifest.mpd?xxxxxx=xxxxxx&start_time=2024-12-30T15:00:00Z&end_time=2024-12-30T15:30:00Z" -M format=mkv --save-name "Blue Lock  EP 14" --key 00000000000000000000000000000000:00000000000000000000000000000000 -sv best -sa all --save-dir "~/Videos"' > ~/Videos/download_Blue_Lock__EP_14.sh &&  chmod +x ~/Videos/download_Blue_Lock__EP_14.sh && (crontab -l 2>/dev/null; echo "35 23 30 12 1 cd ~/Videos && ~/Videos/download_Blue_Lock__EP_14.sh") | crontab -
+`
+
+Example schtasks (for windows) command generated:
+
+`
+echo N_m3u8DL-RE --check-segments-count false "https://example.com/manifest.mpd?xxxxxx=xxxxxx&start_time=2024-12-30T15:00:00Z&end_time=2024-12-30T15:30:00Z" -M format=mkv --save-name "Blue Lock  EP 14" --key 00000000000000000000000000000000:00000000000000000000000000000000 -sv best -sa all --save-dir "%USERPROFILE%\Videos" > "%USERPROFILE%\Videos\download_Blue_Lock__EP_14.bat" & schtasks /create /sc once /sd 30/12/2024 /st 23:35 /tn "Download Blue Lock  EP 14" /tr "cmd /c cd %USERPROFILE%\Videos & %USERPROFILE%\Videos\download_Blue_Lock__EP_14.bat"
+`
+## Setting up N_m3u8DL-RE
+
+### 1. Download the ZIP File
+1. Open your web browser and navigate to the following URL:  
+   [Download N_m3u8DL-RE.zip](https://github.com/nilaoda/N_m3u8DL-RE/releases/download/v0.3.0-beta/N_m3u8DL-RE_v0.3.0-beta_win-x64_20241203.zip)
+2. Save the file to your preferred location (e.g., the **Downloads** folder).
+
+---
+
+### 2. Extract the ZIP File
+1. Locate the downloaded file:  
+   `N_m3u8DL-RE_v0.3.0-beta_win-x64_20241203.zip`.
+2. Right-click on the ZIP file and select **"Extract All"**.
+3. Choose a location for the extracted files (e.g., the **Downloads** folder) and click **Extract**.
+4. After extraction, locate the `N_m3u8DL-RE.exe` file in the extracted folder.
+
+---
+
+### 3. Create the `C:\Tools` Folder
+1. Open **File Explorer**.
+2. Navigate to the `C:` drive.
+3. Right-click on an empty space in the window and select **"New" > "Folder"**.
+4. Name the folder **Tools**.
+
+---
+
+### 4. Move `N_m3u8DL-RE.exe` to `C:\Tools`
+1. Go to the folder where `N_m3u8DL-RE.exe` was extracted.
+2. Right-click on `N_m3u8DL-RE.exe` and select **"Cut"**.
+3. Navigate to the `C:\Tools` folder.
+4. Right-click inside the `C:\Tools` folder and select **"Paste"**.
+
+---
+
+### 5. Add `C:\Tools` to the PATH Environment Variable
+1. Press `Win + S` and search for **Environment Variables**.  
+   (Alternatively: Open **Control Panel** > **System and Security** > **System** > Click **Advanced System Settings** > Click **Environment Variables**.)
+2. In the Environment Variables window:
+   - Under **System Variables**, find and select the variable named **Path**.
+   - Click the **Edit** button.
+3. In the Edit Environment Variable window:
+   - Click **New**.
+   - Enter `C:\Tools`.
+4. Click **OK** to close all dialog boxes.
+
+---
+
+### 6. Verify the Setup
+1. Open **Command Prompt** (`Win + R`, type `cmd`, and press Enter).
+2. Type `N_m3u8DL-RE.exe` and press Enter.
+3. If the setup is successful, the program should run without errors.
+
+---
+
