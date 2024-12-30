@@ -14,6 +14,15 @@ https://dbghelp.github.io/player.html?file=https://dbghelp.github.io/playlist.m3
 - Click on EPG button to view EPG for all channels (Traditional EPG)
 - Supports different key formats (hex, base64, multiple keys)
 - Supports DASH, HLS, MSS (using shaka player)
+- Auto assign `tvg-id` from `epg.xml` to `tvg-id` in `playlist.m3u8` (when missing)
+
+V2 update:
+- Added timeshift feature to watch previously aired TV programmes
+- Added download feature to download previously aired TV programmes
+- Added download feature to download future TV programmes (with cronjob/schtasks)
+- Added support for compressed file formats (`.gz` and `.zip` files)
+- Added support for local file upload
+- Added error handling for malformed EPGs
 
 
 ## Screenshots
