@@ -88,24 +88,27 @@ Often, platforms providing livestream feeds for IPTV providers include a timeshi
 Here are the platforms I have discovered, along with their HTTP parameter formats:
 
 1. **Verimatrix**  
-   Tested with the following IPTV providers, and confirmed that it works: Singtel, Telefónica, Telus
+   Tested with the following IPTV providers and confirmed that it works: Singtel, Telefónica, Telus
 
    **MPD URL pattern and example HTTP parameters:**
-    <pre>https://example.com/1234/<span style="color: red;">vxfmt=dp</span>/manifest.mpd?xxxx=xxxx&start_time=2024-12-30T15:00:00Z&end_time=2024-12-30T16:00:00Z</pre>
+
+    <pre>https://example.com/1234<b>/vxfmt=dp/</b>manifest.mpd?xxxx=xxxx<b>&start_time=2024-12-30T15:00:00Z&end_time=2024-12-30T16:00:00Z</b></pre>
 
 2. **Broadpeak**  
-   Tested with the following IPTV providers, and confirmed that it works: Starhub, Magenta TV
+   Tested with the following IPTV providers and confirmed that it works: Starhub, Magenta TV
 
    **MPD URL pattern and example HTTP parameters:**
-    <pre>https://example.com/bpk-tv/xxxx/output/manifest.mpd?begin=20241230T153000Z&end=20241230T170000Z</pre>
+
+    <pre>https://example.com<b>/bpk-tv/</b>xxxx/output/manifest.mpd<b>?begin=20241230T153000Z&end=20241230T170000Z</b></pre>
 
 3. **AWS Media Services**  
-   Tested with the following IPTV providers, and confirmed that it works: mewatch
+   Tested with the following IPTV providers and confirmed that it works: mewatch
 
    **MPD URL pattern and example HTTP parameters:**
-    <pre>https://example.com/out/v1/8928c1140dd354c5be06db78d686eada/manifest.mpd?start=1735574400&end=1735578000</pre>
 
-If the mpd url of your channel is not 1, 2 or 3, then this format is applied:
+    <pre>https://example.com<b>/out/v1/</b>8928c1140dd354c5be06db78d686eada/manifest.mpd<b>?start=1735574400&end=1735578000</b></pre>
+
+If the mpd url of your channel is not 1, 2 or 3, then this format for guessing is applied:
 
 `?start=1735574400&end=1735578000`
 
